@@ -1,25 +1,25 @@
 import logo from './logo.svg';
 import './App.css';
 
+import data from './component/loadData';
+import Button from './component/button';
+
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <h1>Track Info</h1>
+    <div className='group'>
+      <div>
+        <img src={data.album.images[0].url} width="300" height="300" className="rotate" />
+      </div>
+      <div>
+        <h2>{data.name}</h2>
+        <h3>{data.artists[0].name} : {data.album.name}</h3>
+        <Button />
+      </div>
     </div>
-  );
+  </div>
+);
 }
 
 export default App;
