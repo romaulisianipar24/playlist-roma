@@ -36,3 +36,14 @@
     transform: rotate(360deg);
   }
 }
+
+.group{
+  border: 2px solid rgb(32, 67, 181);
+  padding: 20px;
+  margin: 20px;
+}
+
+button{
+  background-color: rgb(20, 192, 72);
+  color: #ece5b6;
+}
