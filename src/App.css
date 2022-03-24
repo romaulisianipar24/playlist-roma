@@ -37,13 +37,27 @@
   }
 }
 
-.group{
+.group {
   border: 2px solid rgb(32, 67, 181);
   padding: 20px;
-  margin: 20px;
+  /* margin: 200px;
+  width: 250px; */
 }
 
-button{
-  background-color: rgb(20, 192, 72);
-  color: #ece5b6;
+button {
+  background-color: #4caf50; /* Hijau */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.gambar {
+  width: 200px;
+  height: 200;
 }
