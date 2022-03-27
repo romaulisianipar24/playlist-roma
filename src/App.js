@@ -1,24 +1,29 @@
 import logo from "./logo.svg";
 import "./App.css";
 
-import data from "./component/Data/index";
-import Button from "./component/Button/index";
-import { Playlist } from "./page";
+import { AlbumHeader } from "./component/AlbumHeader";
+import { AlbumArtists } from "./component/AlbumDetail/AlbumArtists";
 
 function App() {
   return (
-    <div className="App">
-      <h1>Music Playlist</h1>
-      <div className="group">
-        <div>
-          <Playlist url={data.album.images[0].url} />
-        </div>
-        <Playlist
-          name={data.name}
-          artist={data.artists[0].name}
-          album={data.album.name}
-        />
-        <Button />
+    <div className="mainPage">
+      <center>
+        <h1 className="judul">Music Playlist</h1>
+      </center>
+      <div
+        className="group"
+        style={{
+          backgroundColor: "grey",
+          border: "green",
+          padding: "10px",
+          margin: "auto",
+          width: "50%",
+          border: "3px solid green",
+          display: "block",
+          textAlign: "center",
+        }}
+      >
+        <AlbumHeader />
       </div>
     </div>
   );

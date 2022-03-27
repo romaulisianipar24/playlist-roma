@@ -44,20 +44,31 @@
   width: 250px; */
 }
 
-button {
+.button {
   background-color: #4caf50; /* Hijau */
   border: none;
   color: white;
+  width: 250px;
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
+  font-size: 24px;
+  margin-bottom: 45px;
   cursor: pointer;
+  border-radius: 5px;
 }
 
 .gambar {
   width: 200px;
   height: 200;
+}
+
+.judul {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 70px;
+}
+
+.mainPage {
+  background-color: "#696969";
 }
