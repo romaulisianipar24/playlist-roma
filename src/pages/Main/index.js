@@ -1,38 +1,38 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import Track from "../../component/Track";
 import SearchForm from "../../component/SearchForm";
 import config from "../../utils/config";
 import Playlist from "../../component/Playlist";
-import { getUserProfile } from "../../utils/fetchApi.js";
+import { getUserProfile } from "../../utils/fetchApi";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../../utils/authSlice";
 
 export default function Main() {
   const [tracks, setTracks] = useState([]);
-  const [accessToken, setAccessToken] = useState("");
-  const [isAuthorized, setIsAuthorized] = useState(false);
   const [selectedTrackURI, setSelectedTrackURI] = useState([]);
   const [selectedTracks, setSelectedTracks] = useState([]);
-  const [user, setUser] = useState({});
   const [isSearch, setIsSearch] = useState(false);
+  const isAuthorized = useSelector((state) => state.auth.isAuthorized);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.hash);
     const accessTokenParams = params.get("#access_token");
 
     if (accessTokenParams !== null) {
-      setAccessToken(accessTokenParams);
-      setIsAuthorized(accessTokenParams !== null);
-
       const setUserProfile = async () => {
         try {
           const response = await getUserProfile(accessTokenParams);
-
-          setUser(response);
+          dispatch(
+            login({
+              accessToken: accessTokenParams,
+              user: response,
+            })
+          );
         } catch (e) {
           alert(e);
         }
       };
-
       setUserProfile();
     }
   }, []);
@@ -97,16 +97,11 @@ export default function Main() {
       {isAuthorized && (
         <>
           <h1>Musify</h1>
-          <Playlist
-            accessToken={accessToken}
-            userId={user.id}
-            uris={selectedTrackURI}
-          />
+          <Playlist uris={selectedTrackURI} />
           <hr />
 
           <h3>Search Playlist</h3>
           <SearchForm
-            accessToken={accessToken}
             onSuccess={(tracks) => handleSuccessSearch(tracks)}
             onClearSearch={clearSearch}
           />

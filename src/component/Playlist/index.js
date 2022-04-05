@@ -1,11 +1,14 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { addTracksToPlaylist, createPlaylist } from "../../utils/fetchApi";
 
-export default function Playlist({ accessToken, userId, uris }) {
+export default function Playlist({ uris }) {
   const [playlist, setPlaylist] = useState({
     title: "",
     description: "",
   });
+  const accessToken = useSelector((state) => state.auth.accessToken);
+  const userId = useSelector((state) => state.auth.user.id);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
