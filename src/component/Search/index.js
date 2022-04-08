@@ -2,14 +2,12 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { searchTrack } from "../../utils/fetchApi";
 
-export default function SearchForm({ onSuccess, onClearSearch }) {
+export default function SearchBar({ onSuccess, onClearSearch }) {
   const [text, setText] = useState("");
   const accessToken = useSelector((state) => state.auth.accessToken);
-
   const handleInput = (e) => {
     setText(e.target.value);
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -27,7 +25,6 @@ export default function SearchForm({ onSuccess, onClearSearch }) {
     setText("");
     onClearSearch();
   };
-
   return (
     <div className="search-wrapper">
       <form className="form" onSubmit={handleSubmit}>
@@ -35,7 +32,7 @@ export default function SearchForm({ onSuccess, onClearSearch }) {
           <input
             type="text"
             name="query"
-            placeholder="Search Here"
+            placeholder="Search tracks..."
             onChange={handleInput}
             required
             value={text}
