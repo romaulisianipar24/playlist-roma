@@ -1,4 +1,5 @@
-import config from "./config";
+import axios from "axios";
+import config from "../config";
 
 export const searchTrack = async (query, accessToken) => {
   const requestOptions = {
@@ -8,13 +9,13 @@ export const searchTrack = async (query, accessToken) => {
     },
   };
 
-  const response = await fetch(
+  const response = await axios.get(
     `${config.SPOTIFY_BASE_URL}/search?type=track&q=${query}`,
     requestOptions
-  ).then((data) => data.json());
+  );
 
-  return response;
-};
+  return response.data;
+}; //fetch spotify track data and called in search-bar component
 
 export const getUserProfile = async (accessToken) => {
   const requestOptions = {
@@ -24,13 +25,13 @@ export const getUserProfile = async (accessToken) => {
     },
   };
 
-  const response = await fetch(
+  const response = await axios.get(
     `${config.SPOTIFY_BASE_URL}/me`,
     requestOptions
-  ).then((data) => data.json());
+  );
 
-  return response;
-};
+  return response.data;
+}; //fetch user profile data and called in home
 
 export const createPlaylist = async (
   accessToken,
@@ -45,20 +46,19 @@ export const createPlaylist = async (
   });
 
   const requestOptions = {
-    method: "POST",
-    body: data,
     headers: {
       Authorization: "Bearer " + accessToken,
       "Content-Type": "application/json",
     },
   };
 
-  const response = await fetch(
+  const response = await axios.post(
     `${config.SPOTIFY_BASE_URL}/users/${userId}/playlists`,
+    data,
     requestOptions
-  ).then((data) => data.json());
+  );
 
-  return response;
+  return response.data;
 };
 
 export const addTracksToPlaylist = async (accessToken, playlistId, uris) => {
@@ -67,18 +67,17 @@ export const addTracksToPlaylist = async (accessToken, playlistId, uris) => {
   });
 
   const requestOptions = {
-    method: "POST",
-    body: data,
     headers: {
       Authorization: "Bearer " + accessToken,
       "Content-Type": "application/json",
     },
   };
 
-  const response = await fetch(
+  const response = await axios.post(
     `${config.SPOTIFY_BASE_URL}/playlists/${playlistId}/tracks`,
+    data,
     requestOptions
-  ).then((data) => data.json());
+  );
 
-  return response;
+  return response.data;
 };

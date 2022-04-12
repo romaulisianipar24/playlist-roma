@@ -1,0 +1,20 @@
+.Card {
+	display: grid;
+	grid-gap: 1rem;
+	grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    color: aliceblue;
+}
+
+.card-wrapper {
+	display: grid;
+	grid-template-columns: minmax(300px, 25%) 1fr;
+	grid-gap: 2rem;
+    color: aliceblue;
+}
+
+@media only screen and (max-width: 800px) {
+	.card-wrapper {
+		display: flex;
+		flex-direction: column;
+	}
+}
