@@ -54,6 +54,7 @@ const Login = () => {
       <a id="link" href={generateSpotifyLinkAuthorize()}>
         Login
       </a>
+      <div></div>
     </div>
   );
 };

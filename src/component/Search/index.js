@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { searchTrack } from "../../lib/fetchApi";
 import { useSelector } from "react-redux";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+
 const Search = ({ onSuccess }) => {
   const accessToken = useSelector((state) => state.auth.accessToken);
 
@@ -25,16 +28,22 @@ const Search = ({ onSuccess }) => {
 
   return (
     <form className="form-search" onSubmit={onSubmit}>
-      <input
-        type="text"
-        placeholder="Search..."
-        className="form-search-input"
+      <TextField
+        id="outlined-search"
+        label="Search here"
+        type="search"
         required
+        className="form-search-input"
         onChange={handleInput}
       />
-      <button type="submit" className="btn-search">
+      <Button
+        variant="contained"
+        color="success"
+        type="submit"
+        className="btn-search"
+      >
         Search
-      </button>
+      </Button>
     </form>
   );
 };
