@@ -34,7 +34,7 @@ const Search: React.FC<IProps> = ({ onSuccess }) => {
 
 
   return (
-    <form className="form-search" onSubmit={onSubmit}>
+    <form className="form-search" onSubmit={onSubmit} data-testid="searchBarForm">
       <TextField
         id="outlined-search"
         label="Search here"

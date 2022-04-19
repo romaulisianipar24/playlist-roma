@@ -14,21 +14,24 @@ function App() {
   const isLogin = useSelector((state) => state.auth.isLogin);
 
   return (
-    <div className="App">
-      <Router>
-        <div>
-          <Navbar />
-          <Switch>
-            <Route path={"/create-playlist"}>
-              {isLogin ? <CreatePlayList /> : <Redirect to={"/"} />}
-            </Route>
-            <Route path={"/"}>
-              <Login />
-            </Route>
-          </Switch>
-        </div>
-      </Router>
-    </div>
+    <Provider store={Store}>
+      <div className="App">
+        <Router>
+          <HomePageHeader />
+          <div>
+            <Navbar />
+            <Switch>
+              <Route path={"/create-playlist"}>
+                {isLogin ? <CreatePlayList /> : <Redirect to={"/"} />}
+              </Route>
+              <Route path={"/"}>
+                <Login />
+              </Route>
+            </Switch>
+          </div>
+        </Router>
+      </div>
+    </Provider>
   );
 }
 
