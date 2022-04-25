@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
-
-import data from './component/loadData';
-import Button from './component/button';
+import "./index.css";
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  Switch,
+} from "react-router-dom";
+import CreatePlayList from "./page/createPlaylist";
+import Login from "./page/login";
+import { useSelector } from "react-redux";
+import Navbar from "./Component/Navbar";
 
 function App() {
+  const isLogin = useSelector((state) => state.auth.isLogin);
+
   return (
     <div className="App">
-    <h1>Track Info</h1>
-    <div className='group'>
-      <div>
-        <img src={data.album.images[0].url} width="300" height="300" className="rotate" />
-      </div>
-      <div>
-        <h2>{data.name}</h2>
-        <h3>{data.artists[0].name} : {data.album.name}</h3>
-        <Button />
-      </div>
+      <Router>
+        <div>
+          <Navbar />
+          <Switch>
+            <Route path={"/create-playlist"}>
+              {isLogin ? <CreatePlayList /> : <Redirect to={"/"} />}
+            </Route>
+            <Route path={"/"}>
+              <Login />
+            </Route>
+          </Switch>
+        </div>
+      </Router>
     </div>
-  </div>
-);
+  );
 }
 
 export default App;
